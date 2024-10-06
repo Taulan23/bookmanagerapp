@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Поля для добавления книги -->
+        <EditText
+            android:id="@+id/book_title_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название книги" />
+
+        <EditText
+            android:id="@+id/book_author_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Автор книги"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/date_from_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Начало чтения (дд/мм/гггг)"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/date_to_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Конец чтения (дд/мм/гггг)"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/add_book_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавить книгу"
+            android:layout_marginTop="8dp" />
+
+        <!-- Поля для поиска книги -->
+        <EditText
+            android:id="@+id/search_title_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Поиск по названию"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/search_author_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Поиск по автору"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Поиск"
+            android:layout_marginTop="8dp" />
+
+        <!-- Контейнер для отображения списка книг -->
+        <LinearLayout
+            android:id="@+id/book_list_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>
