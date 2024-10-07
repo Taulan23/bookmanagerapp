@@ -1,6 +1,7 @@
 package com.example.bookmanagerapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             TextView dateToTextView = bookView.findViewById(R.id.date_to_text_view);
             CheckBox readCheckBox = bookView.findViewById(R.id.read_checkbox);
             Button deleteButton = bookView.findViewById(R.id.delete_button);
+            Button reportButton = bookView.findViewById(R.id.report_button); // Кнопка для отправки отчета
 
             // Установка значений для элементов
             bookTitleTextView.setText("Название: " + book.getTitle());
@@ -139,8 +141,34 @@ public class MainActivity extends AppCompatActivity {
                 loadBooks();
             });
 
+            // Отправка отчета о прочтении книги
+            reportButton.setOnClickListener(v -> {
+                sendReport(book);
+            });
+
             // Добавляем элемент книги в контейнер
             bookListContainer.addView(bookView);
+        }
+    }
+
+    // Метод для отправки отчета о прочтении книги
+    private void sendReport(Book book) {
+        String subject = "Отчет о прочтении книги";
+        String message = "Название книги: " + book.getTitle() + "\n" +
+                "Автор: " + book.getAuthor() + "\n" +
+                "Дата начала чтения: " + book.getDateFrom() + "\n" +
+                "Дата окончания чтения: " + book.getDateTo() + "\n" +
+                "Статус: " + (book.isRead() ? "Прочитано" : "Не прочитано");
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Отправить отчет через..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(MainActivity.this, "Нет установленных почтовых клиентов.", Toast.LENGTH_SHORT).show();
         }
     }
 
